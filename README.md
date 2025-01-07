@@ -8,6 +8,93 @@
 [![Swarms Framework](https://img.shields.io/badge/Built%20with-Swarms-blue)](https://github.com/kyegomez/swarms)
 
 
+# HTX Market Analysis Swarm 📊
+
+A sophisticated multi-agent system designed for real-time market analysis of HTX (formerly Huobi) exchange data. This swarm combines specialized AI agents to provide deep market microstructure insights and trading analytics.
+
+## Features 🚀
+
+### Specialized Agents
+
+#### Order Book Analyst 📚
+- Market depth and liquidity analysis
+- Buy/sell wall identification
+- Order book imbalance detection
+- Bid-ask spread monitoring
+- Manipulation pattern detection
+
+#### Volume Analyst 📈
+- Trading volume pattern analysis
+- Volume trend identification
+- Volume-price relationship monitoring
+- Volume-weighted metric tracking
+- Unusual volume activity detection
+
+#### Trade Flow Analyst 🌊
+- Trade execution pattern analysis
+- Large trade flow monitoring
+- Institutional activity tracking
+- Smart money movement detection
+- Market maker activity analysis
+
+#### Market Structure Analyst 🏗️
+- Market microstructure analysis
+- Trading pattern monitoring
+- Market efficiency evaluation
+- Liquidity provider tracking
+- Structural weakness identification
+
+
+## Data Sources 📊
+
+The system integrates with HTX Exchange API endpoints:
+- `/market/detail/merged` - Ticker data
+- `/market/depth` - Order book data
+- `/market/history/trade` - Recent trades
+- `/market/history/kline` - Candlestick data
+
+## Analysis Capabilities 🔍
+
+### Order Book Analysis
+- Liquidity depth evaluation
+- Buy/sell pressure assessment
+- Spread analysis
+- Market impact estimation
+- Order clustering detection
+
+### Volume Analysis
+- Volume profile creation
+- Moving average calculations
+- Breakout detection
+- Distribution analysis
+- Anomaly detection
+
+### Trade Flow Analysis
+- Large trade detection
+- Institutional flow tracking
+- Market maker profiling
+- Smart money tracking
+- Whale activity monitoring
+
+### Market Structure Analysis
+- Price discovery evaluation
+- Market efficiency metrics
+- Liquidity analysis
+- Fragmentation assessment
+- Structural pattern recognition
+
+## Error Handling 🛡️
+
+The system includes robust error handling for:
+- API connection issues
+- Rate limiting
+- Data format changes
+- Processing errors
+- Network timeouts
+
+
+## Usage
+
 ```python
 import os
 import requests
