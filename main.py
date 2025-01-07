@@ -169,25 +169,6 @@ agents = [
 ]
 
 
-# # Initialize the agent
-# swarms_agent = Agent(
-#     agent_name="Swarms-Token-Agent",
-#     system_prompt=SWARMS_AGENT_SYS_PROMPT,
-#     llm=model,
-#     max_loops=1,
-#     autosave=True,
-#     dashboard=False,
-#     verbose=True,
-#     dynamic_temperature_enabled=True,
-#     saved_state_path="swarms_agent.json",
-#     user_name="swarms_corp",
-#     retry_attempts=1,
-#     context_length=200000,
-#     return_step_meta=False,
-#     output_type="string",
-#     streaming_on=False,
-# )
-
 
 def fetch_htx_data(coin_name: str):
     base_url = "https://api.huobi.pro"
