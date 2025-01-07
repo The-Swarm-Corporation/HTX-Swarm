@@ -1,5 +1,7 @@
 
-# HTX Swarm
+
+# HTX Market Analysis Swarm 📊
+
 
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20our%20server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/agora-999382051935506503) [![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@kyegomez3242) [![Connect on LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kye-g-38759a207/) [![Follow on X.com](https://img.shields.io/badge/X.com-Follow-1DA1F2?style=for-the-badge&logo=x&logoColor=white)](https://x.com/kyegomezb)
 
@@ -7,8 +9,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/The-Swarm-Corporation/Legal-Swarm-Template?style=social)](https://github.com/The-Swarm-Corporation/Legal-Swarm-Template)
 [![Swarms Framework](https://img.shields.io/badge/Built%20with-Swarms-blue)](https://github.com/kyegomez/swarms)
 
-
-# HTX Market Analysis Swarm 📊
 
 A sophisticated multi-agent system designed for real-time market analysis of HTX (formerly Huobi) exchange data. This swarm combines specialized AI agents to provide deep market microstructure insights and trading analytics.
 
@@ -53,44 +53,11 @@ The system integrates with HTX Exchange API endpoints:
 - `/market/history/trade` - Recent trades
 - `/market/history/kline` - Candlestick data
 
-## Analysis Capabilities 🔍
 
-### Order Book Analysis
-- Liquidity depth evaluation
-- Buy/sell pressure assessment
-- Spread analysis
-- Market impact estimation
-- Order clustering detection
+## Install
 
-### Volume Analysis
-- Volume profile creation
-- Moving average calculations
-- Breakout detection
-- Distribution analysis
-- Anomaly detection
-
-### Trade Flow Analysis
-- Large trade detection
-- Institutional flow tracking
-- Market maker profiling
-- Smart money tracking
-- Whale activity monitoring
-
-### Market Structure Analysis
-- Price discovery evaluation
-- Market efficiency metrics
-- Liquidity analysis
-- Fragmentation assessment
-- Structural pattern recognition
-
-## Error Handling 🛡️
-
-The system includes robust error handling for:
-- API connection issues
-- Rate limiting
-- Data format changes
-- Processing errors
-- Network timeouts
+- git clone
+- Run: `pip3 install -r requirements.txt`
 
 
 ## Usage
