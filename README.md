@@ -12,37 +12,6 @@
 
 A sophisticated multi-agent system designed for real-time market analysis of HTX (formerly Huobi) exchange data. This swarm combines specialized AI agents to provide deep market microstructure insights and trading analytics.
 
-## Features 🚀
-
-### Specialized Agents
-
-#### Order Book Analyst 📚
-- Market depth and liquidity analysis
-- Buy/sell wall identification
-- Order book imbalance detection
-- Bid-ask spread monitoring
-- Manipulation pattern detection
-
-#### Volume Analyst 📈
-- Trading volume pattern analysis
-- Volume trend identification
-- Volume-price relationship monitoring
-- Volume-weighted metric tracking
-- Unusual volume activity detection
-
-#### Trade Flow Analyst 🌊
-- Trade execution pattern analysis
-- Large trade flow monitoring
-- Institutional activity tracking
-- Smart money movement detection
-- Market maker activity analysis
-
-#### Market Structure Analyst 🏗️
-- Market microstructure analysis
-- Trading pattern monitoring
-- Market efficiency evaluation
-- Liquidity provider tracking
-- Structural weakness identification
 
 
 ## Data Sources 📊
