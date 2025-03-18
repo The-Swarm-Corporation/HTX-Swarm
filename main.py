@@ -1,121 +1,76 @@
-import os
 import requests
 from dotenv import load_dotenv
-from swarm_models import OpenAIChat
-from swarms import Agent, GroupChat
+from swarms import Agent, SequentialWorkflow
 
 
 load_dotenv()
 
-# Initialize base model
-model = OpenAIChat(
-    model_name="gpt-4o",
-    max_tokens=4000,
-    openai_api_key=os.getenv("OPENAI_API_KEY"),
-)
 
 # Technical Analysis Agent
 TECHNICAL_ANALYST_PROMPT = """
 You are an expert Technical Analysis agent specializing in cryptocurrency markets. Your role is to:
-1. Analyze price patterns, trends, and indicators
-2. Identify key support and resistance levels
-3. Evaluate market momentum and volume patterns
-4. Provide detailed technical insights based on chart patterns
-5. Monitor and interpret trading indicators (RSI, MACD, etc.)
+1. Analyze price patterns, trends, and indicators with specific numerical data.
+2. Identify key support and resistance levels with exact price points.
+3. Evaluate market momentum and volume patterns using quantitative metrics.
+4. Provide detailed technical insights based on chart patterns, including Fibonacci retracement levels and moving averages.
+5. Monitor and interpret trading indicators (RSI, MACD, Bollinger Bands) with specific values.
 
 When analyzing data, focus on:
-- Price action and volume analysis
-- Chart pattern recognition
-- Indicator divergences and confluences
-- Market structure and trend analysis
-- Support/resistance levels and price zones
+- Price action and volume analysis, including percentage changes and volume spikes.
+- Chart pattern recognition, such as head and shoulders, double tops/bottoms, and triangles.
+- Indicator divergences and confluences, providing specific indicator values.
+- Market structure and trend analysis, including bullish/bearish trends with defined price ranges.
+- Support/resistance levels and price zones, specifying exact price levels.
 
-Provide your analysis in a clear, structured format with bullet points for key findings.
+Provide your analysis in a clear, structured format with bullet points for key findings, including numerical data.
 Emphasize objective technical analysis without making direct price predictions.
 """
 
 technical_agent = Agent(
     agent_name="Technical-Analyst",
     system_prompt=TECHNICAL_ANALYST_PROMPT,
-    llm=model,
+    model_name="gpt-4o",
     max_loops=1,
     verbose=True,
     dynamic_temperature_enabled=True,
 )
 
-# Fundamental Analysis Agent
-FUNDAMENTAL_ANALYST_PROMPT = """
-You are a Fundamental Analysis expert focusing on cryptocurrency project evaluation. You analyze:
-1. Tokenomics and monetary policy
-2. Team composition and development activity
-3. Market competition and positioning
-4. Partnerships and integrations
-5. On-chain metrics and network activity
-
-Key focus areas:
-- Token distribution and supply metrics
-- Development activity and GitHub commits
-- Network growth and adoption metrics
-- Competition analysis and market positioning
-- Partnership quality and strategic value
-
-Provide comprehensive fundamental analysis based on verifiable data.
-Focus on long-term value drivers and project sustainability.
-"""
-
-fundamental_agent = Agent(
-    agent_name="Fundamental-Analyst",
-    system_prompt=FUNDAMENTAL_ANALYST_PROMPT,
-    llm=model,
-    max_loops=1,
-    verbose=True,
-    dynamic_temperature_enabled=True,
-)
 
 # Market Sentiment Agent
 SENTIMENT_ANALYST_PROMPT = """
 You are a Market Sentiment Analysis specialist focusing on social and market psychology. Your tasks:
-1. Analyze social media sentiment across platforms
-2. Monitor community engagement metrics
-3. Track market fear/greed indicators
-4. Evaluate news impact on market sentiment
-5. Assess institutional interest and whale activity
+1. Analyze social media sentiment across platforms with specific sentiment scores.
+2. Monitor community engagement metrics, including likes, shares, and comments.
+3. Track market fear/greed indicators with numerical values.
+4. Evaluate news impact on market sentiment, providing specific examples.
+5. Assess institutional interest and whale activity, detailing transaction sizes.
 
 Focus areas:
-- Social media sentiment trends
-- Community growth and engagement
-- News sentiment analysis
-- Institutional investment flows
-- Whale wallet activity monitoring
+- Social media sentiment trends, providing percentage changes.
+- Community growth and engagement metrics, including follower counts.
+- News sentiment analysis, quantifying positive/negative impacts.
+- Institutional investment flows, detailing specific amounts.
+- Whale wallet activity monitoring, providing transaction details.
 
 Provide objective sentiment analysis using multiple data sources.
 Emphasize data-driven insights rather than speculation.
 """
 
-sentiment_agent = Agent(
-    agent_name="Sentiment-Analyst",
-    system_prompt=SENTIMENT_ANALYST_PROMPT,
-    llm=model,
-    max_loops=1,
-    verbose=True,
-    dynamic_temperature_enabled=True,
-)
-
 # Risk Management Agent
 RISK_MANAGER_PROMPT = """
 You are a Risk Management specialist focused on market risk assessment. Your role involves:
-1. Identifying potential market risks and vulnerabilities
-2. Analyzing market volatility and liquidity
-3. Evaluating correlation with broader markets
-4. Assessing regulatory and operational risks
-5. Monitoring market manipulation indicators
+1. Identifying potential market risks and vulnerabilities with specific examples.
+2. Analyzing market volatility and liquidity using quantitative measures.
+3. Evaluating correlation with broader markets, providing correlation coefficients.
+4. Assessing regulatory and operational risks, detailing specific regulations.
+5. Monitoring market manipulation indicators with defined thresholds.
 
 Key focus areas:
-- Volatility analysis and risk metrics
-- Liquidity depth assessment
-- Correlation analysis with major assets
-- Regulatory compliance risks
-- Smart contract and protocol risks
+- Volatility analysis and risk metrics, including standard deviation and beta values.
+- Liquidity depth assessment, providing order book metrics.
+- Correlation analysis with major assets, detailing specific correlations.
+- Regulatory compliance risks, specifying relevant regulations.
+- Smart contract and protocol risks, detailing potential vulnerabilities.
 
 Provide comprehensive risk assessment with clear risk ratings and mitigation strategies.
 Focus on identifying both obvious and subtle risk factors.
@@ -124,7 +79,7 @@ Focus on identifying both obvious and subtle risk factors.
 risk_agent = Agent(
     agent_name="Risk-Manager",
     system_prompt=RISK_MANAGER_PROMPT,
-    llm=model,
+    model_name="gpt-4o",
     max_loops=1,
     verbose=True,
     dynamic_temperature_enabled=True,
@@ -133,18 +88,18 @@ risk_agent = Agent(
 # Macro Analysis Agent
 MACRO_ANALYST_PROMPT = """
 You are a Macro Analysis specialist focusing on broader market context. Your role involves:
-1. Analyzing global economic trends
-2. Evaluating crypto market cycles
-3. Monitoring regulatory developments
-4. Assessing cross-market correlations
-5. Analyzing institutional trends
+1. Analyzing global economic trends with specific indicators.
+2. Evaluating crypto market cycles, providing cycle duration and phases.
+3. Monitoring regulatory developments, detailing specific changes.
+4. Assessing cross-market correlations with numerical data.
+5. Analyzing institutional trends, providing investment amounts.
 
 Key focus areas:
-- Global economic indicators
-- Crypto market cycle analysis
-- Regulatory landscape changes
-- Institutional adoption trends
-- Cross-asset correlations
+- Global economic indicators, including GDP growth rates and inflation.
+- Crypto market cycle analysis, detailing historical price movements.
+- Regulatory landscape changes, specifying impacts on the market.
+- Institutional adoption trends, quantifying investment flows.
+- Cross-asset correlations, providing correlation coefficients.
 
 Provide macro context and analysis of how broader trends affect the crypto market.
 Focus on identifying major market-moving factors and trends.
@@ -153,7 +108,7 @@ Focus on identifying major market-moving factors and trends.
 macro_agent = Agent(
     agent_name="Macro-Analyst",
     system_prompt=MACRO_ANALYST_PROMPT,
-    llm=model,
+    model_name="gpt-4o",
     max_loops=1,
     verbose=True,
     dynamic_temperature_enabled=True,
@@ -162,12 +117,9 @@ macro_agent = Agent(
 # Create group chat with all agents
 agents = [
     technical_agent,
-    fundamental_agent,
-    sentiment_agent,
     risk_agent,
-    macro_agent,
+    technical_agent
 ]
-
 
 
 def fetch_htx_data(coin_name: str):
@@ -298,9 +250,9 @@ def fetch_htx_data(coin_name: str):
         return {"error": "HTTP request failed", "details": str(e)}
 
 
-data = fetch_htx_data("swarms")
+data = fetch_htx_data("eth")
 
-swarm = GroupChat(
+swarm = SequentialWorkflow(
     name="htx-swarm",
     description="Swarm that analyzes data from HTX",
     agents=agents,
@@ -308,6 +260,7 @@ swarm = GroupChat(
 )
 
 out = swarm.run(
-    f"Have a internal strategic discussion with the other agents on the price action of the swarms coin {str(data)}"
+    f"Analyze the price action of the swarms coin over the past week. {str(data)} Conduct an analysis of the coin and provide a detailed report."
 )
-print(out.model_dump_json(indent=4))
+
+print(out)
